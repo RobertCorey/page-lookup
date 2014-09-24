@@ -1,11 +1,18 @@
 {
   "name": "pageLookup",
   "version": "0.0.0",
-  "description": "",
+  "description": "looks up the number of pages in the paperback version of a book",
   "main": "pageLookup.js",
+  "dependencies": {
+    "cheerio": "~0.17.0",
+    "google": "~0.3.4",
+    "lodash": "~2.4.1",
+    "request": "~2.44.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "BSD-2-Clause"
+  "author": "Robert Corey",
+  "license": "GNU"
 }
