@@ -6,11 +6,12 @@ var fs = require('fs');
 
 
 function getNumPage (query) {
-  query = 'amazon paperback' + query;
+  var original = query;
+  query = 'amazon paperback ' + query;
   google.resultsPerPage = 1;
   google(query, function (err, resp, links) {
     if (err) console.log(err);
-    return scrapePage(links[0].link, query);
+    return scrapePage(links[0].link, original);
   });
 }
 
@@ -34,12 +35,7 @@ function scrapePage(amazonLink, query) {
   return false;
 }
 
-var books = [
-  'the hobbit'
-];
 if(fs.existsSync('output.txt')) {
   fs.unlinkSync('output.txt');
 }
-_.forEach(books, function (item, index) {
-  getNumPage(item);
-});
+getNumPage('harry potter and the sourcers stone');
