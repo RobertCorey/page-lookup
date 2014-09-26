@@ -1,12 +1,8 @@
 var request = require('request');
 var cheerio = require('cheerio');
-var _ = require('lodash');
-var google = require('google');
-var fs = require('fs');
+var _ = require('lodash'); var google = require('google'); var fs = require('fs');
 
-
-function getNumPage (query) {
-  var original = query;
+ function getNumPage (query) {var original = query;
   query = 'amazon paperback ' + query;
   google.resultsPerPage = 1;
   google(query, function (err, resp, links) {
@@ -25,7 +21,9 @@ function scrapePage(amazonLink, query) {
       if (content.indexOf('Paperback:') >= 0) {
         _.forEach(content.split(' '), function (item) {
           if (!isNaN(item)) {
-            var str = query + ': ' + item + '\n';
+            var str = query + ': ' + item;
+            console.log(str);
+            str += '\n';
             fs.appendFile('output.txt', str);
           }
         });
@@ -38,4 +36,12 @@ function scrapePage(amazonLink, query) {
 if(fs.existsSync('output.txt')) {
   fs.unlinkSync('output.txt');
 }
-getNumPage('harry potter and the sourcers stone');
+var arr = [
+"Twilight",
+"New Moon",
+"Eclipse",
+"New Dawn"
+];
+_.forEach(arr, function (item) {
+  getNumPage(item);
+});
